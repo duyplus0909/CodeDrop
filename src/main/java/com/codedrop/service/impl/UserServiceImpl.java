@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
             user.setToken(token);
             userRepository.save(user);
         } else {
-            throw new Exception("Cannot find any customer with email: " + email);
+            throw new Exception("Cannot find any user with email: " + email);
         }
     }
 

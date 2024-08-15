@@ -4,67 +4,115 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
 
-import java.util.LinkedHashSet;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "Users")
-public class User {
+@Table(name = "users")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
+    @Size(max = 100)
     @NotNull
-    @Column(name = "email", nullable = false, length = 50)
+    @Nationalized
+    @Column(name = "user_code", nullable = false, length = 100)
+    private String userCode;
+
+    @Size(max = 255)
+    @NotNull
+    @Nationalized
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Size(max = 50)
+    @Size(max = 100)
     @NotNull
-    @Column(name = "username", nullable = false, length = 50)
+    @Nationalized
+    @Column(name = "username", nullable = false, length = 100)
     private String username;
 
-    @Size(max = 50)
+    @Size(max = 255)
     @NotNull
-    @Column(name = "password", nullable = false, length = 50)
+    @Nationalized
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Size(max = 50)
-    @NotNull
+    @Size(max = 255)
     @Nationalized
-    @Column(name = "fullname", nullable = false, length = 50)
+    @Column(name = "fullname")
     private String fullname;
 
-    @Size(max = 11)
-    @NotNull
-    @Column(name = "phone", nullable = false, length = 11)
+    @Size(max = 20)
+    @Nationalized
+    @Column(name = "phone", length = 20)
     private String phone;
 
-    @Size(max = 100)
     @Nationalized
-    @Column(name = "bank", length = 100)
-    private String bank;
-
-    @Size(max = 50)
-    @ColumnDefault("N'user.png'")
-    @Column(name = "photo", length = 50)
+    @ColumnDefault("'user.png'")
+    @Lob
+    @Column(name = "photo")
     private String photo;
 
-    @Size(max = 50)
-    @Column(name = "token", length = 50)
+    @Nationalized
+    @Lob
+    @Column(name = "token")
     private String token;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "created_at")
+    private Date createdAt = new Date();
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "updated_at")
+    private Date updatedAt = new Date();
+
+    @ColumnDefault("0")
+    @Column(name = "is_delete")
+    private Boolean isDelete;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "bank_id", nullable = false)
+    private BankAccount bank;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     List<Authority> authorities;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    List<BankAmount> bankAmounts;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    List<BankHistory> bankHistories;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    List<Comment> comments;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    List<Favorite> favorites;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    List<Feedback> feedbacks;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "buyer", fetch = FetchType.EAGER)
+    List<OrderDetail> orderDetails;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "seller", fetch = FetchType.EAGER)
+    List<SourceCode> sourceCodes;
 
 }

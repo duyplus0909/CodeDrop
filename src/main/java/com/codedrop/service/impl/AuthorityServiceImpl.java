@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserRolesServiceImpl implements AuthorityService {
+public class AuthorityServiceImpl implements AuthorityService {
+
     @Autowired
     AuthorityRepository authorityRepository;
+
     @Autowired
     UserRepository userRepository;
 
