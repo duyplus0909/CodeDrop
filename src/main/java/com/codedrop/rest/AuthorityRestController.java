@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/authorities")
+@RequestMapping("/api/authorities")
 public class AuthorityRestController {
 
     @Autowired
