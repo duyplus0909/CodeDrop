@@ -9,7 +9,7 @@
 
 ### Danh mục
 
-##### 1. Tính năng chính:
+#### 1. Tính năng chính:
   - Client
     + Đăng ký, đăng nhập tài khoản
     + Quên mật khẩu, đổi mật khẩu, thông tin tài khoản
@@ -26,23 +26,21 @@
     + Quản lý kiểm toán và chốt lệnh rút tiền
     + Quản lý thống kê doanh thu
 
-##### 2. Công nghệ sử dụng:
+#### 2. Công nghệ sử dụng:
   - Java Core, Spring Boot, Spring Security, Spring Data JPA
   - Apache Tomcat, MSSQL Server
 
-##### 3. Môi trường phát triển:
+#### 3. Môi trường phát triển:
   - IntelliJ IDEA
   - Microsoft SQL Server
 
-##### 4. Công cụ hỗ trợ:
+#### 4. Công cụ hỗ trợ:
   - Project Lombok
   - JPA Buddy
   - Postman, Swagger
   - Git
 
 ### CRUD RESTful APIs
-
-##### USER, CATEGORY, REPORT,... = (name)
 
 | Methods | Urls            | Status Code      | Actions                  |
 |---------|-----------------|------------------|--------------------------|
