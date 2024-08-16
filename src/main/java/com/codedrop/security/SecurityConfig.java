@@ -1,6 +1,6 @@
 package com.codedrop.security;
 
-import com.codedrop.entity.User;
+import com.codedrop.model.User;
 import com.codedrop.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Bean;

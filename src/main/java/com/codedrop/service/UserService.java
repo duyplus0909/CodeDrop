@@ -1,6 +1,6 @@
 package com.codedrop.service;
 
-import com.codedrop.entity.User;
+import com.codedrop.model.User;
 
 import java.util.List;
 

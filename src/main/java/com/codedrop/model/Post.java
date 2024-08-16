@@ -1,6 +1,7 @@
-package com.codedrop.entity;
+package com.codedrop.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
@@ -10,31 +11,35 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "report")
-public class Report implements Serializable {
+@Table(name = "post")
+public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @NotNull
     @Nationalized
     @Lob
-    @Column(name = "link_original")
-    private String linkOriginal;
+    @Column(name = "title", nullable = false)
+    private String title;
 
+    @NotNull
     @Nationalized
     @Lob
-    @Column(name = "link_report")
-    private String linkReport;
+    @Column(name = "content", nullable = false)
+    private String content;
 
-    @Nationalized
-    @Lob
-    @Column(name = "description")
-    private String description;
+    @Column(name = "type", columnDefinition = "tinyint not null")
+    private Short type;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "created_at")
     private Date createdAt = new Date();
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "updated_at")
+    private Date updatedAt = new Date();
 
     @ColumnDefault("0")
     @Column(name = "is_delete")

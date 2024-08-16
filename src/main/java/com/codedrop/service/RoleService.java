@@ -1,7 +1,7 @@
 package com.codedrop.service;
 
 
-import com.codedrop.entity.Role;
+import com.codedrop.model.Role;
 
 import java.util.List;
 

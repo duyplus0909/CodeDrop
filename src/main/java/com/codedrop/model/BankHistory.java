@@ -1,4 +1,4 @@
-package com.codedrop.entity;
+package com.codedrop.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -10,15 +10,18 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "feedback")
-public class Feedback implements Serializable {
+@Table(name = "bank_history")
+public class BankHistory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "rate")
-    private Integer rate;
+    @Column(name = "total")
+    private Double total;
+
+    @Column(name = "status", columnDefinition = "tinyint")
+    private Short status;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "created_at")
@@ -35,7 +38,7 @@ public class Feedback implements Serializable {
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "source_id", nullable = false)
-    private SourceCode source;
+    @JoinColumn(name = "bank_id", nullable = false)
+    private BankAccount bank;
 
 }

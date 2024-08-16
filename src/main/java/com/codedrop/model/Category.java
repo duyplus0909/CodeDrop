@@ -1,4 +1,4 @@
-package com.codedrop.entity;
+package com.codedrop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

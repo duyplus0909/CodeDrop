@@ -1,7 +1,7 @@
 package com.codedrop.service.impl;
 
-import com.codedrop.entity.Authority;
-import com.codedrop.entity.User;
+import com.codedrop.model.Authority;
+import com.codedrop.model.User;
 import com.codedrop.repository.AuthorityRepository;
 import com.codedrop.repository.UserRepository;
 import com.codedrop.service.AuthorityService;

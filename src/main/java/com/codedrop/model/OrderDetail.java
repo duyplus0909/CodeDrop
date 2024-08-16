@@ -1,4 +1,4 @@
-package com.codedrop.entity;
+package com.codedrop.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -10,19 +10,16 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "bank_amount")
-public class BankAmount implements Serializable {
+@Table(name = "order_detail")
+public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "amount")
-    private Double amount;
-
     @Temporal(TemporalType.DATE)
-    @Column(name = "updated_at")
-    private Date updatedAt = new Date();
+    @Column(name = "created_at")
+    private Date createdAt = new Date();
 
     @ColumnDefault("0")
     @Column(name = "is_delete")
@@ -30,7 +27,12 @@ public class BankAmount implements Serializable {
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "source_id", nullable = false)
+    private SourceCode source;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "buyer_id", nullable = false)
+    private User buyer;
 
 }

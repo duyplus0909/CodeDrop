@@ -11,19 +11,4 @@ public class HomeController {
     public String home(Model model) {
         return "index";
     }
-
-    @RequestMapping("/admin")
-    public String admin(Model model) {
-        return "redirect:/admin";
-    }
-
-    @RequestMapping("about")
-    public String about() {
-        return "about";
-    }
-
-    @RequestMapping("contact")
-    public String contact() {
-        return "contact";
-    }
 }

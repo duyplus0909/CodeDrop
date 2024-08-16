@@ -1,4 +1,4 @@
-package com.codedrop.entity;
+package com.codedrop.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

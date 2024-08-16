@@ -1,6 +1,6 @@
 package com.codedrop.rest;
 
-import com.codedrop.entity.User;
+import com.codedrop.model.User;
 import com.codedrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

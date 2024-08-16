@@ -1,6 +1,6 @@
 package com.codedrop.service;
 
-import com.codedrop.entity.BankAccount;
+import com.codedrop.model.BankAccount;
 
 import java.util.List;
 

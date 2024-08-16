@@ -1,6 +1,6 @@
 package com.codedrop.repository;
 
-import com.codedrop.entity.User;
+import com.codedrop.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

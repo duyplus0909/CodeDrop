@@ -1,6 +1,6 @@
 package com.codedrop.service;
 
-import com.codedrop.entity.Authority;
+import com.codedrop.model.Authority;
 
 import java.util.List;
 

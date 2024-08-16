@@ -1,6 +1,6 @@
 package com.codedrop.service.impl;
 
-import com.codedrop.entity.User;
+import com.codedrop.model.User;
 import com.codedrop.repository.UserRepository;
 import com.codedrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

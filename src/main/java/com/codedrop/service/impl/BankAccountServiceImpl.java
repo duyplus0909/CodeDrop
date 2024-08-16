@@ -1,6 +1,6 @@
 package com.codedrop.service.impl;
 
-import com.codedrop.entity.BankAccount;
+import com.codedrop.model.BankAccount;
 import com.codedrop.repository.BankAccountRepository;
 import com.codedrop.service.BankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
