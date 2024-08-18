@@ -1,4 +1,4 @@
-package com.codedrop.rest;
+package com.codedrop.controller;
 
 import com.codedrop.model.Role;
 import com.codedrop.service.RoleService;
@@ -12,8 +12,8 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/roles")
-public class RoleRestController {
+@RequestMapping("/api/role")
+public class RoleController {
 
     @Autowired
     RoleService roleService;

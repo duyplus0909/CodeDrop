@@ -1,10 +1,14 @@
 package com.codedrop.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
 
@@ -12,8 +16,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@Builder
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "bank_account")
 public class BankAccount implements Serializable {
     @Id
@@ -35,12 +42,14 @@ public class BankAccount implements Serializable {
     private String fullname;
 
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "created_at")
-    private Date createdAt = new Date();
+    private Date createdAt;
 
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "updated_at")
-    private Date updatedAt = new Date();
+    private Date updatedAt;
 
     @ColumnDefault("0")
     @Column(name = "is_delete")

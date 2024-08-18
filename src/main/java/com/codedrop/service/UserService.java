@@ -5,25 +5,22 @@ import com.codedrop.model.User;
 import java.util.List;
 
 public interface UserService {
-    User findById(Integer id);
 
     List<User> findAll();
 
-    List<User> getAdministrators();
+    User findById(Integer id);
 
     User create(User user);
 
-    User update(User users);
+    User update(User user);
 
-    void delete(Integer id);
+    void delete(User user);
 
-//    void loginFromOAuth2(OAuth2AuthenticationToken oauth2);
+    User findUsernameByEmail(String email);
 
-    void updateToken(String token, String email) throws Exception;
+    User findByEmail(String email);
 
-    User getByToken(String token);
+    User findByToken(String token);
 
-    void updatePassword(User user, String newPassword);
-
-    void changePassword(User user, String newPassword);
+//    void loginOAuth2(OAuth2AuthenticationToken oauth2);
 }

@@ -1,5 +1,6 @@
 package com.codedrop.service.impl;
 
+import com.codedrop.exception.ResourceNotFoundException;
 import com.codedrop.model.User;
 import com.codedrop.repository.UserRepository;
 import com.codedrop.service.UserService;
@@ -13,24 +14,19 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder pe;
+    private PasswordEncoder pe;
 
     @Override
     public User findById(Integer id) {
-        return userRepository.findById(id).get();
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
-    }
-
-    @Override
-    public List<User> getAdministrators() {
-        return userRepository.getAdministrators();
     }
 
     @Override
@@ -44,12 +40,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Integer id) {
-        userRepository.deleteById(id);
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
+    @Override
+    public User findUsernameByEmail(String email) {
+        return userRepository.findUsernameByEmail(email);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findByToken(String token) {
+        return userRepository.findByToken(token);
     }
 
 //    @Override
-//    public void loginFromOAuth2(OAuth2AuthenticationToken oauth2) {
+//    public void loginOAuth2(OAuth2AuthenticationToken oauth2) {
 //        // String fullname = oauth2.getPrincipal().getAttribute("name");
 //        String email = oauth2.getPrincipal().getAttribute("email");
 //        String password = Long.toHexString(System.currentTimeMillis());
@@ -58,33 +69,4 @@ public class UserServiceImpl implements UserService {
 //        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 //        SecurityContextHolder.getContext().setAuthentication(auth);
 //    }
-
-    @Override
-    public void updateToken(String token, String email) throws Exception {
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            user.setToken(token);
-            userRepository.save(user);
-        } else {
-            throw new Exception("Cannot find any user with email: " + email);
-        }
-    }
-
-    @Override
-    public User getByToken(String token) {
-        return userRepository.findByToken(token);
-    }
-
-    @Override
-    public void updatePassword(User user, String newPassword) {
-        user.setPassword(newPassword);
-        user.setToken("");
-        userRepository.save(user);
-    }
-
-    @Override
-    public void changePassword(User user, String newPassword) {
-        user.setPassword(newPassword);
-        userRepository.save(user);
-    }
 }

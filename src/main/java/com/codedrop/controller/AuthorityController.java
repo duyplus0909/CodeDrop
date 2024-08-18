@@ -1,4 +1,4 @@
-package com.codedrop.rest;
+package com.codedrop.controller;
 
 import com.codedrop.model.Authority;
 import com.codedrop.service.AuthorityService;
@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/authorities")
-public class AuthorityRestController {
+@RequestMapping("/api/authority")
+public class AuthorityController {
 
     @Autowired
     AuthorityService authorityService;

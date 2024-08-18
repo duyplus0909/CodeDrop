@@ -12,11 +12,11 @@ import java.util.List;
 public class BankAccountServiceImpl implements BankAccountService {
 
     @Autowired
-    BankAccountRepository bankAccountRepository;
+    private BankAccountRepository bankAccountRepository;
 
     @Override
     public BankAccount findById(String id) {
-        return bankAccountRepository.findById(id).get();
+        return bankAccountRepository.findById(id).orElseThrow(() -> new RuntimeException("BankAccount not found with id " + id));
     }
 
     @Override

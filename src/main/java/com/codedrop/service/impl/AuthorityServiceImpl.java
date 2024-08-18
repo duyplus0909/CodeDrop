@@ -14,10 +14,10 @@ import java.util.List;
 public class AuthorityServiceImpl implements AuthorityService {
 
     @Autowired
-    AuthorityRepository authorityRepository;
+    private AuthorityRepository authorityRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public List<Authority> findAuthoritiesOfAdministrators() {
