@@ -24,11 +24,11 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> getAll() {
-        List<User> user = userService.findAll();
-        if (user.isEmpty()) {
+        List<User> users = userService.findAll();
+        if (users.isEmpty()) {
             return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<User>>(user, HttpStatus.OK);
+        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
     @GetMapping("{id}")

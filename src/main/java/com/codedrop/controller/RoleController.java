@@ -1,8 +1,11 @@
 package com.codedrop.controller;
 
 import com.codedrop.model.Role;
+import com.codedrop.model.User;
 import com.codedrop.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,12 @@ public class RoleController {
     RoleService roleService;
 
     @GetMapping
-    public List<Role> getAll() {
-        return roleService.findAll();
+    public ResponseEntity<List<Role>> getAll() {
+        List<Role> roles = roleService.findAll();
+        if (roles.isEmpty()) {
+            return new ResponseEntity<List<Role>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Role>>(roles, HttpStatus.OK);
     }
 
 }
