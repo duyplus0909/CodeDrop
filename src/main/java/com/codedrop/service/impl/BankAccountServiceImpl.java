@@ -15,13 +15,13 @@ public class BankAccountServiceImpl implements BankAccountService {
     private BankAccountRepository bankAccountRepository;
 
     @Override
-    public BankAccount findById(String id) {
-        return bankAccountRepository.findById(id).orElseThrow(() -> new RuntimeException("BankAccount not found with id " + id));
+    public List<BankAccount> findAll() {
+        return bankAccountRepository.findAll();
     }
 
     @Override
-    public List<BankAccount> findAll() {
-        return bankAccountRepository.findAll();
+    public BankAccount findById(String id) {
+        return bankAccountRepository.findById(id).orElseThrow(() -> new RuntimeException("BankAccount not found with id " + id));
     }
 
     @Override

@@ -40,7 +40,7 @@ public class HomeController {
     @Autowired
     AuthService authService;
 
-    @RequestMapping({"/", "/index", "home"})
+    @RequestMapping("/")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView();
         view.setViewName("index");
@@ -71,7 +71,7 @@ public class HomeController {
     }
 
     @PostMapping("auth/forgot-password")
-    public ResponseEntity<Void> sendMailToken(@RequestBody String email) {
+    public ResponseEntity<Void> forgotPassword(@RequestBody String email) {
         if (authService.sendResetMail(email)) {
             return ResponseEntity.ok().build();
         }
@@ -80,7 +80,7 @@ public class HomeController {
 
     @SneakyThrows
     @GetMapping("auth/reset-password")
-    public ResponseEntity<User> checkToken(@RequestParam Optional<String> token) {
+    public ResponseEntity<User> resetPassword(@RequestParam Optional<String> token) {
         ResourceNotFoundException exception = new ResourceNotFoundException("Cannot find token: " + token);
         String tokenVal = token.orElseThrow(() -> exception);
         User user = authService.findByToken(tokenVal);

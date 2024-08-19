@@ -16,16 +16,8 @@ public class AuthorityController {
     @Autowired
     AuthorityService authorityService;
 
-    @GetMapping
-    public List<Authority> findAll(@RequestParam("admin") Optional<Boolean> admin) {
-        if (admin.orElse(false)) {
-            return authorityService.findAuthoritiesOfAdministrators();
-        }
-        return authorityService.findAll();
-    }
-
     @PostMapping
-    public Authority post(@RequestBody Authority auth) {
+    public Authority create(@RequestBody Authority auth) {
         return authorityService.create(auth);
     }
 

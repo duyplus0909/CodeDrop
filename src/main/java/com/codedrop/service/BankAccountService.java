@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface BankAccountService {
 
-    BankAccount findById(String id);
-
     List<BankAccount> findAll();
+
+    BankAccount findById(String id);
 
     BankAccount create(BankAccount bankAccount);
 
